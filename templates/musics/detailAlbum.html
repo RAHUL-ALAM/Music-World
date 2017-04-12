@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block body %}
+<style type="text/css">
+
+</style>
+<strong> {{album}} </strong> <br/>
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+<div class="w3-row-padding w3-padding-16 w3-center" id="food">
+{% for song in songs %}
+<div class="w3-quarter">
+      <img src="{{ song.logo.url }}" style="width:100%">
+      <p.<a href="/musics/{{album.id}}/{{song.id}}">{{song}}</a></p><br/>
+</div>
+{% endfor %}
+</div>
+</div>
+
+{% if user.is_authenticated %}
+{% if user == album.user %}
+	<form enctype="multipart/form-data" action="/musics/{{album_id}}/" method="post">
+	{% csrf_token %}
+		{{form.as_p}}
+	<button type="submit" class="btn btn-primary">ADD</button>
+	</form>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+<!--{% for song in songs %}
+	<img src="{{ song.logo.url }}">
+	<a href="/musics/{{album.id}}/{{song.id}}">{{song}}</a><br/>
+{% endfor %}-->

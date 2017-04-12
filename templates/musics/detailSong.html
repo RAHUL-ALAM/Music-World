@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+	<img src="{{ song.logo.url }}">
+	<audio controls>
+		<source src="{{song.music.url}}" type="audio/mp3">
+	</audio>
+	<p> Likes : {{likes}} </p> 
+	<p> Views : {{views}} </p>
+	{% if user.is_authenticated %}
+	<p> Views by You : {{viewsbyuser}} </p>
+	<form method="post" action="/musics/{{album.id}}/{{song.id}}">
+	{% csrf_token %}
+		{% if is_liked %}
+			<button type="submit" class="btn btn-primary">DisLike</button>
+		{% else %}
+			<button type="submit" class="btn btn-primary">Like</button>
+		{% endif %}
+	</form>
+	{% endif %}
+{% endblock %}

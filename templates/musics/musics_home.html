@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block body %}
+	<style>
+	.albums{
+		/*background-color: rgb(245,245,245);*/
+		border-radius: 20px;
+		padding: 20px;
+		width: 30%;
+		float: left;
+		margin: 20px;
+		margin-left: 30px; margin-right: auto;
+		box-shadow: 1px 1px 8px #888888
+	}
+	img{
+		width: 100px; height: 100px;
+	}
+	</style>
+		
+		<strong>
+
+		{% for album in all_album %}
+		<div class="albums">
+	        <img src="{{ album.cover.url }}" alt="Card image cap">
+	        &nbsp&nbsp
+	        <a href="/musics/{{album.id}}">{{album}}</a>
+    	</div>
+		{% endfor %}
+	
+	{% if user.is_authenticated %}
+	<form enctype="multipart/form-data" action="/musics/" method="post">
+	{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit" class="btn btn-primary">ADD</button>
+	</form>
+	{% endif %}
+{% endblock %}
