@@ -84,10 +84,10 @@ def detailSong(request,album_id,song_id):
 			isliked = 1
 		else:
 			isliked = 0
-		context = context + {'is_liked':isliked}
+		context.update({'is_liked':isliked})
 	if request.user.is_authenticated():
 		viewsbyu = View.objects.get(user=request.user,song=song).views
-		context = context + {'viewsbyuser':viewsbyu}
+		context.update({'viewsbyuser':viewsbyu})
 
 	return render(request,"musics/detailSong.html",context)
 

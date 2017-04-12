@@ -8,8 +8,8 @@
 <div class="w3-row-padding w3-padding-16 w3-center" id="food">
 {% for song in songs %}
 <div class="w3-quarter">
-      <img src="{{ song.logo.url }}" style="width:100%">
-      <p.<a href="/musics/{{album.id}}/{{song.id}}">{{song}}</a></p><br/>
+      <a href="/musics/{{album.id}}/{{song.id}}"><img src="{{ song.logo.url }}" style="width:100%">
+      <p>{{song}}</p></a><br/>
 </div>
 {% endfor %}
 </div>
