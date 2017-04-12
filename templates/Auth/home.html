@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+
+ <div style="margin-left: 80px;">
+ <p style="font-weight: bold; font-size: 20px;">Top Songs  </p></a><br/>
+ </div>
+
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:0px">
+<div class="w3-row-padding w3-padding-16 w3-center" id="food">
+{% for song in songs %}
+<div class="w3-quarter">
+	<div style="box-shadow: 0px 0px 5px #888888;">
+      <a href="/musics/{{song.album_id}}/{{song.id}}"><img src="{{ song.logo.url }}" style="width:100%"><p></p>
+      <p style="font-weight: bold; font-size: 16px;">{{song}}</p></a><br/>
+    </div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

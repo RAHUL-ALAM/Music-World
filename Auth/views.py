@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, RegisterForm
+from musics.models import Song
 
 # Create your views here.
 def home(request):
-	return render(request,'base.html')
+	songs = Song.objects.order_by('views')[:4]
+	return render(request,'Auth/home.html',{'songs':songs})
 def logreg(request):
 	form1 = LoginForm()
 	form2 = RegisterForm() 

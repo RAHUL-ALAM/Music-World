@@ -3,27 +3,45 @@
 <style type="text/css">
 
 </style>
-<strong> {{album}} </strong> <br/>
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+<p style="font-size: 30px; font-weight: 800; margin-left: 80px;"> Album : {{album}} </p> <br/>
+{% if user.is_authenticated %}
+{% if user == album.user %}
+	<div style="margin-left: 130px; box-shadow: 1px 1px 5px #888888; width: 1000px; padding: 20px;">
+	<p style="font-weight: bold; font-size: 20px;"> Add New Song</p>
+	<form class="form-inline" enctype="multipart/form-data" action="/musics/{{album_id}}/" method="post">
+	{% csrf_token %}
+	  	<div class="form-group">
+	  		<label for="title"> Title: </label>
+	    	{{form.title}}
+	  	</div>
+	  	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	  	<div class="form-group">
+	  		<label for="logo"> Logo: </label>
+	    	{{form.logo}}
+	  	</div>
+	  	<div class="form-group">
+	  		<label for="music"> Music: </label>
+	    	{{form.music}}
+	  	</div>
+	  	<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	</div>
+{% endif %}
+{% endif %}
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:0px">
 <div class="w3-row-padding w3-padding-16 w3-center" id="food">
 {% for song in songs %}
 <div class="w3-quarter">
+	<div style="box-shadow: 0px 0px 5px #888888;">
       <a href="/musics/{{album.id}}/{{song.id}}"><img src="{{ song.logo.url }}" style="width:100%">
-      <p>{{song}}</p></a><br/>
+      <p></p><p></p>
+      <p style="font-weight: bold; font-size: 16px;">{{song}}</p></a><br/>
+	</div>
 </div>
 {% endfor %}
 </div>
 </div>
 
-{% if user.is_authenticated %}
-{% if user == album.user %}
-	<form enctype="multipart/form-data" action="/musics/{{album_id}}/" method="post">
-	{% csrf_token %}
-		{{form.as_p}}
-	<button type="submit" class="btn btn-primary">ADD</button>
-	</form>
-{% endif %}
-{% endif %}
 {% endblock %}
 
 <!--{% for song in songs %}

@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block body %}
-	<img src="{{ song.logo.url }}">
-	<audio controls>
+	<div style="padding: 20px; margin-left: 30px; box-shadow: 1px 1px 5px #888888; width: 300px;">
+		<img src="{{ song.logo.url }}">
+	</div >
+	<div  style="width: 600px; position: absolute; top: 170px; left: 400px;">
+	<audio controls style=" width: 500px;">
 		<source src="{{song.music.url}}" type="audio/mp3">
 	</audio>
-	<p> Likes : {{likes}} </p> 
-	<p> Views : {{views}} </p>
+	</div>
+	<div style="padding: 10px; margin-left: 30px; box-shadow: 1px 1px 5px #888888; width: 300px; margin-top: 20px;">
+	<p> Likes : {{likes}} &nbsp&nbsp&nbsp Views : {{views}} </p> 
 	{% if user.is_authenticated %}
 	<p> Views by You : {{viewsbyuser}} </p>
 	<form method="post" action="/musics/{{album.id}}/{{song.id}}">
@@ -17,4 +21,7 @@
 		{% endif %}
 	</form>
 	{% endif %}
+	</div>
+	<p> </p>
+	
 {% endblock %}
